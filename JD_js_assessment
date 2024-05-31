@@ -1,0 +1,84 @@
+/*
+Assessment Requirements
+1. Create a variable that can hold a number of NFT's. What type of variable might this be?
+2. Create an object inside your mintNFT function that will hold the metadata for your NFTs. 
+   The metadata values will be passed to the function as parameters. When the NFT is ready, 
+   you will store it in the variable you created in step 1
+3. Your listNFTs() function will print all of your NFTs metadata to the console (i.e. console.log("Name: " + someNFT.name))
+4. For good measure, getTotalSupply() should return the number of NFT's you have created
+*/
+
+// create a variable to hold your NFT's
+
+let allNFT = [];
+
+// this function will take in some values as parameters, create an
+// NFT object using the parameters passed to it for its metadata, 
+// and store it in the variable above.
+
+function mintNFT (_name , _tokenID , _type , _dateOfCreation ) 
+{
+    let NFT = {"Name" : _name , "Token ID" : _tokenID , "Type" : _type , "Date Of Creation (DD/MM/YYYY)" : _dateOfCreation};
+    allNFT.push(NFT);
+}
+
+// create a "loop" that will go through an "array" of NFT's
+// and print their metadata with console.log()
+function listNFTs () 
+{
+    let i = 0 ;
+
+    while(i<(allNFT.length))
+        {
+            console.log("NFT number " + (i+1) + " : ");
+            console.log("\nDate of Creation : " + allNFT[i]["Date Of Creation (DD/MM/YYYY)"]);
+            console.log("Name : \t\t" + allNFT[i].Name);
+            console.log("Token ID : \t" + allNFT[i]["Token ID"]);
+            console.log("Type : \t\t" + allNFT[i].Type + "\n\n");
+            
+            i++;
+        }
+}
+
+// This function search a given NFT(by name) out of the stored NFTs
+let i = 0;
+function searchNFT(_name)
+{
+    if(allNFT[i] == undefined)
+        {
+            console.log("\nNo such NFT with given name is present.");
+            return ;
+        }
+
+    if(allNFT[i]["Name"] == _name)
+        {
+            console.log("\nYour NFT number is " + (i+1));
+
+            return ;
+        }
+    else
+    {
+        i++;
+        searchNFT(_name);
+    }
+}
+
+// print the total number of NFTs we have minted to the console
+function getTotalSupply() 
+{
+    console.log("\nThere are total of " + (allNFT.length) + " NFTs.")
+}
+
+// call your functions below this line
+
+mintNFT("Tree" , "1234abc" , "Artistic" , "15/02/2017" );
+mintNFT("Cake" , "123abcd" , "Authentic" , "11/08/2015" );
+mintNFT("Mouse" , "1237abe" , "Gaming" , "21/09/2019" );
+
+listNFTs();
+
+getTotalSupply();
+
+
+searchNFT("dice");
+
